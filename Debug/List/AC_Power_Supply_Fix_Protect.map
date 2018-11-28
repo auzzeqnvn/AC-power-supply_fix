@@ -1,0 +1,33 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+Bit_Positive_24_Warning                                                           GPIOR0.0  1bit
+Bit_Positive_12_Warning                                                           GPIOR0.1  1bit
+Bit_Positive_6_Warning                                                            GPIOR0.2  1bit
+Bit_Negative_12_Warning                                                           GPIOR0.3  1bit
+Bit_Negative_6_Warning                                                            GPIOR0.4  1bit
+Uc_Positive_24_Over                                                               R3           1
+Uc_Positive_24_Under                                                              R2           1
+Uc_Positive_12_Over                                                               R5           1
+Uc_Positive_12_Under                                                              R4           1
+Uc_Positive_6_Over                                                                R7           1
+Uc_Positive_6_Under                                                               R6           1
+Uc_Negative_12_Over                                                               R9           1
+Uc_Negative_12_Under                                                              R8           1
+Uc_Negative_6_Over                                                                R11          1
+Uc_Negative_6_Under                                                               R10          1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+read_adc                                                                          0x00042     15
+PROTECT                                                                           0x00051    144
+main                                                                              0x000E1     48
