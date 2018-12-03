@@ -26,6 +26,9 @@ ActiveEditorPanel=0
 Active0=1
 EditorPanel0=0
 PageIndex0=0
+EditorPanel1=0
+TimeStamp1=1300335859
+PageIndex1=1
 [CompilerDebug]
 Chip=ATtiny24
 CPUClock=8000000
@@ -124,8 +127,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1300038164
-Build=3
+COFFileTimeStamp=1300335862
+Build=4
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -227,7 +230,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=3
+Build=4
 [DefinedSymbols]
 Count=0
 [StartUp]
@@ -311,11 +314,11 @@ RunUserProg=0
 Files=1
 F1=main.c
 [Bookmarks1]
-TimeStamp=1300020652
-Row=0
-Column=0
+TimeStamp=1300335859
+Row=258
+Column=76
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=249
 BK0=-1
 BK1=-1
 BK2=-1
@@ -326,8 +329,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode1]
-Blocks=0
 [HeadersList]
 Files=1
 F1=D:\My Data\TanPhat\AC-power-supply_fix\main.c
@@ -347,10 +348,10 @@ L12=Enhanced function parameters passing: Yes
 L13=Automatic register allocation: Yes
 L14=Smart register allocation: Yes
 L15=
-L16=Build: 2
-L17=966 line(s) compiled
+L16=Build: 3
+L17=969 line(s) compiled
 L18=No errors
-L19=No warnings
+L19=1 warning(s)
 L20=
 L21=Bit variables area: 0x2 to 0x2
 L22=Bit variables size: 1 byte(s)
@@ -368,30 +369,32 @@ L33=Heap size: 0 byte(s)
 L34=
 Lines=37
 L35=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L36=Program size: 298 words (596 bytes), 29.1% of FLASH
-L37=10 words (20 bytes), 3.2% reduced by Code Compression
+L36=Program size: 332 words (664 bytes), 32.4% of FLASH
+L37=18 words (36 bytes), 5.1% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=12
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=D:\My Data\TanPhat\AC-power-supply_fix\Debug\List\AC_Power_Supply_Fix_Protect.asm(1773): No EEPROM data, deleting D:\My Data\TanPhat\AC-power-supply_fix\Debug\Exe\AC_Power_Supply_Fix_Protect.eep
+L4=D:\My Data\TanPhat\AC-power-supply_fix\Debug\List\AC_Power_Supply_Fix_Protect.asm(1824): No EEPROM data, deleting D:\My Data\TanPhat\AC-power-supply_fix\Debug\Exe\AC_Power_Supply_Fix_Protect.eep
 L5=
 L6=ATtiny24 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x000000 0x000254    578     18    596    2048  29.1%
+L9=[.cseg] 0x000000 0x000298    644     20    664    2048  32.4%
 L10=[.dseg] 0x000060 0x000080      0      0      0     128   0.0%
 L11=[.eseg] 0x000000 0x000000      0      0      0     128   0.0%
 L12=
-[Header1]
-Files=3
-F1=C:\cvavr\inc\tiny24.h
-F2=C:\cvavr\inc\tiny24_bits.h
-F3=C:\cvavr\inc\delay.h
 [Bookmarks0]
 Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1300038167
+TimeStamp=1300389591
+[Header1]
+Files=3
+F1=C:\cvavr\inc\tiny24.h
+F2=C:\cvavr\inc\tiny24_bits.h
+F3=C:\cvavr\inc\delay.h
+[FoldedCode1]
+Blocks=0
