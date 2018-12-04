@@ -29,6 +29,6 @@ Uint_Warning_Count                                                              
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-read_adc                                                                          0x00043     15
-PROTECT                                                                           0x00052    149
-main                                                                              0x000E7     48
+read_adc                                                                          0x00043     16
+PROTECT                                                                           0x00053    158
+main                                                                              0x000F1     52

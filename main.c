@@ -46,11 +46,11 @@ Data Stack size         : 32
 #define CONTROL_BUZZER_ON   CONTROL_BUZZER = 1
 #define CONTROL_BUZZER_OFF  CONTROL_BUZZER = 0
 
-#define ADC_POSITIVE_24_SET_OVER   400
-#define ADC_POSITIVE_12_SET_OVER   400
-#define ADC_POSITIVE_6_SET_OVER    400
-#define ADC_NEGATIVE_6_SET_OVER    400
-#define ADC_NEGATIVE_12_SET_OVER   400
+#define ADC_POSITIVE_24_SET_OVER   300
+#define ADC_POSITIVE_12_SET_OVER   50
+#define ADC_POSITIVE_6_SET_OVER    52
+#define ADC_NEGATIVE_6_SET_OVER    52
+#define ADC_NEGATIVE_12_SET_OVER   52
 
 #define TIME_WARNING    400
 #define TIME_BUZZER     50
@@ -80,21 +80,38 @@ unsigned int    Uint_Warning_Count = TIME_WARNING;
 
 // Declare your global variables here
 
-// Voltage Reference: AVCC pin
-#define ADC_VREF_TYPE ((0<<REFS1) | (0<<REFS0))
+// // Voltage Reference: AVCC pin
+// #define ADC_VREF_TYPE ((0<<REFS1) | (0<<REFS0))
+
+// // Read the AD conversion result
+// unsigned int read_adc(unsigned char adc_input)
+// {
+//     ADMUX=(adc_input & 0x3f) | ADC_VREF_TYPE;
+//     // Delay needed for the stabilization of the ADC input voltage
+//     delay_us(10);
+//     // Start the AD conversion
+//     ADCSRA|=(1<<ADSC);
+//     // Wait for the AD conversion to complete
+//     while ((ADCSRA & (1<<ADIF))==0);
+//     ADCSRA|=(1<<ADIF);
+//     return ADCW;
+// }
+
+// Voltage Reference: 1.1V, AREF discon.
+#define ADC_VREF_TYPE ((1<<REFS1) | (0<<REFS0))
 
 // Read the AD conversion result
 unsigned int read_adc(unsigned char adc_input)
 {
-    ADMUX=(adc_input & 0x3f) | ADC_VREF_TYPE;
-    // Delay needed for the stabilization of the ADC input voltage
-    delay_us(10);
-    // Start the AD conversion
-    ADCSRA|=(1<<ADSC);
-    // Wait for the AD conversion to complete
-    while ((ADCSRA & (1<<ADIF))==0);
-    ADCSRA|=(1<<ADIF);
-    return ADCW;
+ADMUX=(adc_input & 0x3f) | ADC_VREF_TYPE;
+// Delay needed for the stabilization of the ADC input voltage
+delay_us(10);
+// Start the AD conversion
+ADCSRA|=(1<<ADSC);
+// Wait for the AD conversion to complete
+while ((ADCSRA & (1<<ADIF))==0);
+ADCSRA|=(1<<ADIF);
+return ADCW;
 }
 
 void    PROTECT(void)
@@ -213,7 +230,7 @@ void    PROTECT(void)
             Bit_Negative_6_Warning = 0;
         }
     }
-    
+
     if(Bit_Negative_6_Warning || Bit_Negative_12_Warning || Bit_Positive_12_Warning || Bit_Positive_6_Warning)
     {
         CONTROL_UNDER_24_OFF;
@@ -267,8 +284,8 @@ DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<
 PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
 
 // Port B initialization
-// Function: Bit3=In Bit2=In Bit1=Out Bit0=Out 
-DDRB=(0<<DDB3) | (0<<DDB2) | (1<<DDB1) | (1<<DDB0);
+// Function: Bit3=In Bit2=Out Bit1=Out Bit0=Out 
+DDRB=(0<<DDB3) | (1<<DDB2) | (1<<DDB1) | (1<<DDB0);
 // State: Bit3=T Bit2=T Bit1=0 Bit0=0 
 PORTB=(0<<PORTB3) | (0<<PORTB2) | (0<<PORTB1) | (0<<PORTB0);
 
@@ -337,9 +354,20 @@ ACSR=(1<<ACD) | (0<<ACBG) | (0<<ACO) | (0<<ACI) | (0<<ACIE) | (0<<ACIC) | (0<<AC
 // Digital input buffer on AIN1: On
 DIDR0=(0<<ADC1D) | (0<<ADC2D);
 
+// // ADC initialization
+// // ADC Clock frequency: 1000.000 kHz
+// // ADC Voltage Reference: AVCC pin
+// // ADC Bipolar Input Mode: Off
+// // ADC Auto Trigger Source: ADC Stopped
+// // Digital input buffers on ADC0: On, ADC1: On, ADC2: On, ADC3: On
+// // ADC4: On, ADC5: On, ADC6: On, ADC7: On
+// DIDR0=(0<<ADC7D) | (0<<ADC6D) | (0<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D) | (0<<ADC1D) | (0<<ADC0D);
+// ADMUX=ADC_VREF_TYPE;
+// ADCSRA=(1<<ADEN) | (0<<ADSC) | (0<<ADATE) | (0<<ADIF) | (0<<ADIE) | (0<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+// ADCSRB=(0<<BIN) | (0<<ADLAR) | (0<<ADTS2) | (0<<ADTS1) | (0<<ADTS0);
 // ADC initialization
-// ADC Clock frequency: 1000.000 kHz
-// ADC Voltage Reference: AVCC pin
+// ADC Clock frequency: 1000,000 kHz
+// ADC Voltage Reference: 1.1V, AREF discon.
 // ADC Bipolar Input Mode: Off
 // ADC Auto Trigger Source: ADC Stopped
 // Digital input buffers on ADC0: On, ADC1: On, ADC2: On, ADC3: On
@@ -348,14 +376,16 @@ DIDR0=(0<<ADC7D) | (0<<ADC6D) | (0<<ADC5D) | (0<<ADC4D) | (0<<ADC3D) | (0<<ADC2D
 ADMUX=ADC_VREF_TYPE;
 ADCSRA=(1<<ADEN) | (0<<ADSC) | (0<<ADATE) | (0<<ADIF) | (0<<ADIE) | (0<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
 ADCSRB=(0<<BIN) | (0<<ADLAR) | (0<<ADTS2) | (0<<ADTS1) | (0<<ADTS0);
+
+
 CONTROL_BUZZER_ON;
 delay_ms(200);
 CONTROL_BUZZER_OFF;
+delay_ms(200);
 
 while (1)
       {
       // Place your code here
         PROTECT();
-
       }
 }
